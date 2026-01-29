@@ -1,3 +1,4 @@
 # ECL298
-Class project
-Progress: Jan 28: Import data and describe it
+## Student Name: Wendy Jiaying Song
+## Class project
+## Progress: Jan 28: Import data and describe it
