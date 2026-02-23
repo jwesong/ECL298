@@ -82,8 +82,28 @@ mean(n_pred != y[testid])  ## [1] 0.03630363
 ## 10.10.8
 # ====================================================
 ## all 10 photos in upload in photos folder within the git project
+photo_dir <- "DL_HW_photos"
+image_files <- file.path(photo_dir, paste0(1:10, ".jpg"))
 
+num_images <- length(image_files)
 
+x <- array(dim = c(num_images, 224, 224, 3))
+for (i in 1:num_images) {
+   img <- image_load(image_files[i], target_size = c(224, 224))
+   x[i,,, ] <- image_to_array(img)
+}
+
+x <- imagenet_preprocess_input(x)
+model <- application_resnet50(weights = "imagenet")
+summary(model)
+
+pred <- predict(model, x) |>
+   imagenet_decode_predictions(top = 5)
+
+names(pred) <- basename(image_files)
+print(pred)
+
+###### SOOO FUNNY that they dont have RAGDOLL detect but TIGER cat, LOVE IT!
 
 
 # ====================================================
